@@ -1,5 +1,8 @@
 
 
+
+
+
 	mapboxgl.accessToken = 'pk.eyJ1IjoibXV6YW1pbDIwNiIsImEiOiJjbGN5eXh2cW0wc2lnM290ZzJsZnNlbmxsIn0.o2Obvl7E_nQefSN34XsFmw';
     const map = new mapboxgl.Map({
         container: 'map',
@@ -13,7 +16,7 @@
     map.on('load', () => {
         map.addSource('market', {
             'type': 'geojson',
-            'data': 'markets.geojson'
+            'data': 'Market.geojson'
         });
 
         // The feature-state dependent fill-opacity expression will render the hover effect
@@ -34,17 +37,39 @@
 
         map.on('click', 'market-point', (e) => {
     const properties = e.features[0].properties;
+
+    const getTrueDays = (properties) => {
+        const days = [];
+        if (properties.field_9 === " true") days.push("Monday");
+        if (properties.field_11 === " true") days.push("Tuesday");
+        if (properties.field_13 === " true") days.push("Wednesday");
+        if (properties.field_15 === " true") days.push("Thursday");
+        if (properties.field_17 === " true") days.push("Friday");
+        if (properties.field_19 === " true") days.push("Saturday");
+        if (properties.field_21 === " true") days.push("Sunday");
+        console.log(days)
+        return days;
+       
+    
+    };
+    
+    const trueDays = getTrueDays(properties);
     const htmlContent = `
         <div class="popup-content">
-            <h3 class="popup-header">${properties.name}</h3>
+            <h3 class="popup-header">${properties.MARKET}</h3>
             <div class="popup-body">
-                <p><strong>State Code:</strong> ${properties.state_code}</p>
-                <p><strong>Source:</strong> ${properties.source}</p>
-                <p><strong>Ward Code:</strong> ${properties.ward_code}</p>
-                <p><strong>Settlement Name:</strong> ${properties.settlement_name}</p>
+                <p><strong>State Code:</strong> ${properties.ST}</p>
+                <p><strong>Source:</strong> ${properties.SOURCES}</p>
+                <p><strong>Ward Code:</strong> ${properties.WARD}</p>
+                <p><strong>Settlement Name:</strong> ${properties.SETTLEMENT_NAME}</p>
                 <p><strong>Type of Goods:</strong> ${properties.type_goods}</p>
-                <p><strong>Frequency:</strong> ${properties.frequency}</p>
-                <p><strong>Days:</strong> ${getDays(properties)}</p>
+                <p><strong>Frequency:</strong> ${properties.FREQUENCY}</p>
+                <p><strong>Market Days:</strong> 
+                <ul>
+                    ${trueDays.map(day => `<li>${day}</li>`).join('')}
+                </ul>
+            </p>
+            </p>
             </div>
         </div>
     `;
@@ -55,17 +80,7 @@
         .addTo(map);
 });
 
-function getDays(properties) {
-    const days = [];
-    if (properties.days_monday) days.push('Monday');
-    if (properties.days_tuesday) days.push('Tuesday');
-    if (properties.days_wednesday) days.push('Wednesday');
-    if (properties.days_thursday) days.push('Thursday');
-    if (properties.days_friday) days.push('Friday');
-    if (properties.days_saturday) days.push('Saturday');
-    if (properties.days_sunday) days.push('Sunday');
-    return days.length > 0 ? days.join(', ') : 'No days specified';
-}
+
 
         map.on('mouseenter', 'states-layer', () => {
             map.getCanvas().style.cursor = 'pointer';
