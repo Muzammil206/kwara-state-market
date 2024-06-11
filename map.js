@@ -1,10 +1,8 @@
-
-
-
-
-
+let map
+function startMap() {
+    document.getElementById('welcome-page').classList.add('hidden');
 	mapboxgl.accessToken = 'pk.eyJ1IjoibXV6YW1pbDIwNiIsImEiOiJjbGN5eXh2cW0wc2lnM290ZzJsZnNlbmxsIn0.o2Obvl7E_nQefSN34XsFmw';
-    const map = new mapboxgl.Map({
+     map = new mapboxgl.Map({
         container: 'map',
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: 'mapbox://styles/mapbox/streets-v12',
@@ -16,11 +14,21 @@
     map.on('load', () => {
         map.addSource('market', {
             'type': 'geojson',
-            'data': 'Market.geojson'
+            'data': 'combine.geojson'
         });
 
         // The feature-state dependent fill-opacity expression will render the hover effect
         // when a feature's hover state is set to true.
+        map.addLayer({
+            'id': 'ward-layer',
+            'type': 'fill',
+            'source': 'market',
+            'paint': {
+                'fill-color': 'rgba(200, 100, 240, 0.4)',
+                'fill-outline-color': 'rgba(200, 100, 240, 1)'
+            }
+        });
+
         map.addLayer({
             'id': 'market-point',
             'type': 'circle',
@@ -147,3 +155,5 @@ const styleGeocoder = () => {
 
 // Apply custom styles once the Geocoder control is added to the DOM
 setTimeout(styleGeocoder, 1000);
+
+}
