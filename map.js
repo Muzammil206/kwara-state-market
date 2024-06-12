@@ -6,11 +6,10 @@ function startMap() {
         container: 'map',
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: 'mapbox://styles/mapbox/streets-v12',
-        center: [4.14537,9.73902],
+        center: [4.4182797,8.6854323],
         zoom: 7
     });
-    let hoveredPolygonId = null;
-
+   
     map.on('load', () => {
         map.addSource('market', {
             'type': 'geojson',
@@ -28,6 +27,33 @@ function startMap() {
                 'fill-outline-color': 'rgba(200, 100, 240, 1)'
             }
         });
+
+
+   
+        map.on('click', 'ward-layer', (e) => {
+            const properties = e.features[0].properties;
+
+            const htmlContent = `
+            <div class="popup-content">
+                <h3 class="popup-header">${properties.ward_name}</h3>
+                <div class="popup-body">
+                    <p><strong>State Code:</strong> ${properties.ward_code}</p>
+                    <p><strong>Ward Name:</strong> ${properties.ward_name}</p>
+                    <p><strong>Local Gov Code :</strong> ${properties.lga_code}</p>
+    
+                </p>
+                </p>
+                </div>
+            </div>
+        `;
+
+
+            new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(htmlContent)
+                .addTo(map);
+        });
+
 
         map.addLayer({
             'id': 'market-point',
