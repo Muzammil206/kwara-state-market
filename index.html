@@ -5,6 +5,10 @@
 <title> Kwara-state state</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link rel="stylesheet" href="map.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
 </head>
@@ -13,12 +17,35 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
 
-
+ 
  <div id="welcome-page">
-    <h1 class="h1">Welcome to the Kwara state market portal</h1>
-    <p class="p">Explore the interactive map to find Kwara state market points and more information.</p>
-    <button class="btn" onclick="startMap()">Continue</button>
-   </div> 
+    <button class="btn btnt" onclick="startMap()">Get started</button>
+    <nav>
+        <div class="logo">KWARA MARKET NAVIGATOR</div>
+        <ul>
+            <li><a href="#products">Contact us</a></li>
+            <li><a href="#templates">Templates</a></li>
+            <li><a href="#resources">Resources</a></li>
+        </ul>
+       
+    </nav>
+   <div class="content">
+       <h1>Welcome to the Kwara State
+         Market Virtual Map Portal</h1>
+       <p>Discover the diverse array of goods sold, learn about their names, geographic location, and mark your calendar for the bustling market days.</p>
+       <p>Immerse yourself in the vibrant culture of Kwara State from the comfort of your screen and experience the heartbeat of the market at your fingertips!</p>
+       <p><em >Curated by Fakeye Victor Olamide and Adeboyejo Eniola Olusola</em></p>
+       <button class="btn" onclick="startMap()">Proceed to map ></button>
+   </div>
+   
+   <div class="scrolling-images">
+       <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGxvY2FsJTIwbWFya2V0JTIwYXJlYWwlMjB2aWV3fGVufDB8fDB8fHww" alt="Image 1">
+       <img src="https://media.istockphoto.com/id/1484925380/photo/busy-market-street-in-lagos-nigeria-west-africa.webp?b=1&s=170667a&w=0&k=20&c=ref6ZoaHINTQkAffiUK7AivnRWELEfTtnOoEzms6L6o=" alt="Image 2">
+       <img class="bad" src="https://media.istockphoto.com/id/477446790/photo/downtown-market-streets-lagos-nigeria.jpg?s=612x612&w=0&k=20&c=xRnuywKyp9MmGI4ES1l6u26ArE5jK3YSdNyh6B4QxwM=" alt="Image 3">
+       <img src="https://media.istockphoto.com/id/490027228/photo/market-square-in-ubud.jpg?s=612x612&w=0&k=20&c=hXRIj-0nd6VgZKALhiyRN2X_P6NaWhcy0kTivVX7gm4=" alt="Image 4">
+   </div>
+   <h4 class="tin">Curated by Fakeye Victor Olamide and Adeboyejo Eniola Olusola</h4>
+</div>
  <div id="map"></div>
  <script src="map.js"></script>
 
